@@ -1,6 +1,6 @@
 # [SberPaySdkAndroidDoc](https://sdkpay.github.io/SberPaySdkAndroidDoc/)
 
-##### [Начало работы](https://sdkpay.github.io/SberPaySdkAndroidDoc/start) | [Сценарии оплаты через SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script) | [Работа в режиме посочницы](https://sdkpay.github.io/SberPaySdkAndroidDoc/sandbox_mode) | [Вспомогательные структуры данных](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures) | [Актуальная версия SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/version)
+#### [Бординг](https://sdkpay.github.io/SberPaySdkAndroidDoc/boarding) | [Регистрация заказов в платежном шлюзе Сбера](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration) | [Начало работы](https://sdkpay.github.io/SberPaySdkAndroidDoc/start) | [Сценарии оплаты через SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script) | [Работа в режиме посочницы](https://sdkpay.github.io/SberPaySdkAndroidDoc/sandbox_mode) | [Вспомогательные структуры данных](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures) | [Актуальная версия SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/version) | [Поддержка](https://sdkpay.github.io/SberPaySdkAndroidDoc/support) | [FAQ](https://sdkpay.github.io/SberPaySdkAndroidDoc/faq)
 
 # Начало работы
 > Версии SDK, которые работают с *API>=24* - поддерживается всеми версиями  
@@ -152,7 +152,7 @@ Helpers или помогашки - функционал, позволяющий
 
 ## Добавление кнопки
 
-Для вызова метода оплаты можно использовать готовый класс кнопки `SPayButton` или отрисовать кнопку самостоятельно в соответсвии с [гайдланами](https://cdn-app.sberdevices.ru/misc/0.0.0/assets/bsm-docs/button-guideline.pdf)
+Для вызова метода оплаты можно использовать готовый класс кнопки `SPayButton` или отрисовать кнопку самостоятельно в соответсвии с [гайдлайнами](https://cdn-app.sberdevices.ru/misc/0.0.0/assets/bsm-docs/button-guideline.pdf)
 
 Инициализация кнопки оплаты: [.xml](https://sdkpay.github.io/SberPaySdkAndroidDoc/start#xml) / [Composable](https://sdkpay.github.io/SberPaySdkAndroidDoc/start#composable)
 
