@@ -23,7 +23,11 @@
 
 Идентификатор сессии (`localSessionId`) создается при каждой попытке оплаты через SberPay SDK. Идентификатор используется для разбора инцидентов и отладки работы SDK. `LocalSessionId` можно найти на следующих экранах:
 1. На экране загрузки SDK после старта оплаты:
+
 <img src="docs/assets/img/load-pay.png" width="200">
+
 2. На результирующих экранах (ошибка/успех оплаты):
+
 <img src="docs/assets/img/success-pay.png" width="200"> <img src="docs/assets/img/fail-pay.png" width="200">
+
 3. В коллбеке методов оплаты: <br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#paymentresult)
