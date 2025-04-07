@@ -3,10 +3,10 @@
 ##### [Начало работы](https://sdkpay.github.io/SberPaySdkAndroidDoc/start) | [Сценарии оплаты через SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script) | [Работа в режиме посочницы](https://sdkpay.github.io/SberPaySdkAndroidDoc/sandbox_mode) | [Вспомогательные структуры данных](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures) | [Актуальная версия SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/version)
 
 # Сценарии оплаты
-#### [Автоматическая оплата](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#)
-#### [Оплата без рефреш-токена](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#)
-#### [Оплата частями с комиссией](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#)
-#### [Оплата со списанием бонусов «Спасибо»](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#)
+#### [Автоматическая оплата](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#автоматическая-оплата-1)
+#### [Оплата без рефреш-токена](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#оплата-без-рефреш-токена-1)
+#### [Оплата частями с комиссией](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#оплата-частями-с-комиссией-1)
+#### [Оплата со списанием бонусов «Спасибо»](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#оплата-со-списанием-бонусов-спасибо-1)
 
 ## Автоматическая оплата
 
@@ -23,7 +23,7 @@
 |orderNumber|String|ANS..36|Да|Уникальный номер (идентификатор) заказа в системе Клиента. Используется для упрощенного поиска заказа в системе банка при выявлении дефектов|
 |appPackage|String|ANS..512|Да|Package приложения (он же BuildConfig.APPLICATION_ID) Вашего приложения, по которому необходимо вернуть Плательщика после аутентификации в СберБанк Онлайн|
 |language|String|A..2|Нет|Язык локализации интерфейсов.  Пример: RU|
-|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#payemntresult)|
+|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#paymentresult)|
 
 ### Вызов метода `payWithBankInvoiceId`
 
@@ -104,7 +104,7 @@ SPaySdkApp.getInstance().payWithBankInvoiceId(
 |orderNumber|String|ANS..36|Да|Уникальный номер (идентификатор) заказа в системе Клиента. Используется для упрощенного поиска заказа в системе банка при выявлении дефектов|
 |appPackage|String|ANS..512|Да|Package приложения (он же BuildConfig.APPLICATION_ID) Вашего приложения, по которому необходимо вернуть Плательщика после аутентификации в СберБанк Онлайн|
 |language|String|A..2|Нет|Язык локализации интерфейсов.  Пример: RU|
-|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#payemntresult)|
+|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#paymentresult)|
 
 ### Вызов метода `payWithoutRefresh`
 
@@ -189,7 +189,7 @@ SPaySdkApp.getInstance().payWithoutRefresh(
 |orderNumber|String|ANS..36|Да|Уникальный номер (идентификатор) заказа в системе Клиента. Используется для упрощенного поиска заказа в системе банка при выявлении дефектов|
 |appPackage|String|ANS..512|Да|Package приложения (он же BuildConfig.APPLICATION_ID) Вашего приложения, по которому необходимо вернуть Плательщика после аутентификации в СберБанк Онлайн|
 |language|String|A..2|Нет|Язык локализации интерфейсов.  Пример: RU|
-|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#payemntresult)|
+|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#paymentresult)|
 
 ### Вызов метода `payWithPartPay`
 
@@ -274,7 +274,7 @@ SPaySdkApp.getInstance().payWithoutRefresh(
 |orderNumber|String|ANS..36|Да|Уникальный номер (идентификатор) заказа в системе Клиента. Используется для упрощенного поиска заказа в системе банка при выявлении дефектов|
 |appPackage|String|ANS..512|Да|Package приложения (он же BuildConfig.APPLICATION_ID) Вашего приложения, по которому необходимо вернуть Плательщика после аутентификации в СберБанк Онлайн|
 |language|String|A..2|Нет|Язык локализации интерфейсов.  Пример: RU|
-|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#payemntresult)|
+|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#paymentresult)|
 
 ### Вызов метода `payWithBonuses`
 
