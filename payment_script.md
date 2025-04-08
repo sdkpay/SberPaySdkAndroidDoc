@@ -2,11 +2,16 @@
 
 #### [Бординг](https://sdkpay.github.io/SberPaySdkAndroidDoc/boarding) | [Регистрация заказов в платежном шлюзе Сбера](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration) | [Начало работы](https://sdkpay.github.io/SberPaySdkAndroidDoc/start) | [Сценарии оплаты через SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script) | [Работа в режиме посочницы](https://sdkpay.github.io/SberPaySdkAndroidDoc/sandbox_mode) | [Вспомогательные структуры данных](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures) | [Актуальная версия SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/version) | [Поддержка](https://sdkpay.github.io/SberPaySdkAndroidDoc/support) | [FAQ](https://sdkpay.github.io/SberPaySdkAndroidDoc/faq)
 
+<br>
+
 # Сценарии оплаты
+
 #### [Автоматическая оплата](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#автоматическая-оплата-1)
 #### [Оплата без рефреш-токена](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#оплата-без-рефреш-токена-1)
 #### [Оплата частями с комиссией](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#оплата-частями-с-комиссией-1)
 #### [Оплата со списанием бонусов «Спасибо»](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#оплата-со-списанием-бонусов-спасибо-1)
+
+<br>
 
 ## Автоматическая оплата
 
@@ -88,6 +93,8 @@ SPaySdkApp.getInstance().payWithBankInvoiceId(
     }
 );
 ```
+
+<br>
 
 ## Оплата без рефреш-токена
 
@@ -174,6 +181,8 @@ SPaySdkApp.getInstance().payWithoutRefresh(
 );
 ```
 
+<br>
+
 ## Оплата частями с комиссией
 
 ### Сценарий оплаты частями с комиссией
@@ -258,6 +267,8 @@ SPaySdkApp.getInstance().payWithoutRefresh(
     }
 );
 ```
+
+<br>
 
 ## Оплата со списанием бонусов «Спасибо»
 

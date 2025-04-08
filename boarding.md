@@ -2,6 +2,8 @@
 
 #### [Бординг](https://sdkpay.github.io/SberPaySdkAndroidDoc/boarding) | [Регистрация заказов в платежном шлюзе Сбера](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration) | [Начало работы](https://sdkpay.github.io/SberPaySdkAndroidDoc/start) | [Сценарии оплаты через SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script) | [Работа в режиме посочницы](https://sdkpay.github.io/SberPaySdkAndroidDoc/sandbox_mode) | [Вспомогательные структуры данных](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures) | [Актуальная версия SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/version) | [Поддержка](https://sdkpay.github.io/SberPaySdkAndroidDoc/support) | [FAQ](https://sdkpay.github.io/SberPaySdkAndroidDoc/faq)
 
+<br>
+
 # Бординг
 
 ## Схемы получения учетных записей
@@ -16,11 +18,15 @@
 
 ![Процесс оплаты](/docs/assets/img/scheme-payment.png)
 
+<br>
+
 ## Настройка доступов для проведения оплаты
 
 ### Получения учетных записей для проведения оплаты﻿
 
 Запрос в support на адрес support@ecom.sberbank.ru
+
+<br>
 
 ## Как получить apikey
 
@@ -31,6 +37,8 @@
 ### Получение apiKey через СберБизнес
 
 [Инструкция](https://developers.sber.ru/docs/assets/files/apikey-2712ab7639c827586f0304625dcddef5.pdf) для получения apiKey
+
+<br>
 
 ## Настройка доступов для тестирования оплаты
 

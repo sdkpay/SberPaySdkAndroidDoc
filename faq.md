@@ -2,9 +2,13 @@
 
 #### [Бординг](https://sdkpay.github.io/SberPaySdkAndroidDoc/boarding) | [Регистрация заказов в платежном шлюзе Сбера](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration) | [Начало работы](https://sdkpay.github.io/SberPaySdkAndroidDoc/start) | [Сценарии оплаты через SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script) | [Работа в режиме посочницы](https://sdkpay.github.io/SberPaySdkAndroidDoc/sandbox_mode) | [Вспомогательные структуры данных](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures) | [Актуальная версия SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/version) | [Поддержка](https://sdkpay.github.io/SberPaySdkAndroidDoc/support) | [FAQ](https://sdkpay.github.io/SberPaySdkAndroidDoc/faq)
 
+<br>
+
 # FAQ
 
 В данном разделе собраны часто встречающиеся вопросы по интеграции SDK SberPay
+
+<br>
 
 ## FAQ Общие вопросы
 
@@ -56,6 +60,8 @@
 **В: Какие данные собирает SDK?**  
 О: SDK SberPay имеет встренную систему сбора метрик. Метрики необходимы для оперативного разбора инцидентов и мониторинга работоспособности SDK. SDK **не собирает** персональные данные пользователя. Пример собираемых метрик: пользователь открыл экран оплаты, пользователь закрыл экран со списком карт
 
+<br>
+
 ## FAQ SDK SberPay Android in-App
 
 **В: Какие языки программирования мы поддерживаем?**  
@@ -69,7 +75,7 @@
 ---
 
 **В: При нажатии кнопки оплатить в коллбек метода пришла ошибка** *RequiredDataNotSent(description=Длина `bankInvoiceId` должна быть 32 символа)*  
-О: Передается не верное значение `bankInvoiceId`. Нужно регистрировать заказ по гайду: [Регистрация заказа](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration#rbs) и передавать в качестве `bankInvoiceId` в SDK параметр `sbolBankInvoiceId` из ответа запроса на регистрацию заказа
+О: Передается не верное значение `bankInvoiceId`. Нужно регистрировать заказ по гайду: [Регистрация заказа](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration) и передавать в качестве `bankInvoiceId` в SDK параметр `sbolBankInvoiceId` из ответа запроса на регистрацию заказа
 
 ---
 

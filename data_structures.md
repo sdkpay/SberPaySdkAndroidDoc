@@ -2,6 +2,8 @@
 
 #### [Бординг](https://sdkpay.github.io/SberPaySdkAndroidDoc/boarding) | [Регистрация заказов в платежном шлюзе Сбера](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration) | [Начало работы](https://sdkpay.github.io/SberPaySdkAndroidDoc/start) | [Сценарии оплаты через SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script) | [Работа в режиме посочницы](https://sdkpay.github.io/SberPaySdkAndroidDoc/sandbox_mode) | [Вспомогательные структуры данных](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures) | [Актуальная версия SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/version) | [Поддержка](https://sdkpay.github.io/SberPaySdkAndroidDoc/support) | [FAQ](https://sdkpay.github.io/SberPaySdkAndroidDoc/faq)
 
+<br>
+
 # Вспомогательные структуры данных
 
 ## SPaySdkInitConfig
@@ -20,6 +22,8 @@
 |enableOutsideTouchCancelling|Boolean|true|Нет|Включить завершение работы SDK по тапу вне шторки|
 |initializationResult|Callback<InitializationResult>|-|Да|Блок результата инициализации SDK|
 
+<br>
+
 ## SPayStage
 
 #### Стенды для работы с SDK
@@ -30,6 +34,8 @@
 |SandboxRealBankApp|Нет|Режим песочницы, для авторизации пользователя происходит редирект в приложение Сбербанка. Позволяет протестировать оплату в максимально близких к продуктовым условиях|
 |SandboxWithoutBankApp|Нет|Режим песочницы, при авторизации пользователя не осуществляется перехода в приложение Сбербанка. Позволяет производить тестирование на устройствах без Сбербанк-онлайн|
 
+<br>
+
 ## SPayHelperConfig
 
 #### Помогашки
@@ -39,6 +45,8 @@
 |sbp|Boolean|true|Нет|Разрешить пополнение карты через СБП|
 |creditCard|Boolean|true|Нет|Разрешить выпуск кредитной карты|
 |debitCard|Boolean|true|Нет|Разрешить выпуск дебетовой карты|
+
+<br>
 
 ## MerchantError
 
@@ -95,6 +103,8 @@ sealed class MerchantError(
 }
 ```
 
+<br>
+
 ## InitializationResult
 
 #### Результат выполнения метода `initialize`
@@ -114,6 +124,8 @@ sealed class InitializationResult {
     data class ConfigError(val message: String) : InitializationResult()
 }
 ```
+
+<br>
 
 ## PaymentResult
 
@@ -161,9 +173,9 @@ sealed class PaymentResult : Parcelable {
      */
     data class Cancel(val localSessionId: String) : PaymentResult()
 }
-
 ```
 
+<br>
 
 ## PaymentTokenResult
 
@@ -191,6 +203,4 @@ sealed class PaymentTokenResult {
      */
     data class Error(val merchantError: MerchantError) : PaymentTokenResult()
 }
-
 ```
-
