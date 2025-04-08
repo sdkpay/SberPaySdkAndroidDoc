@@ -4,7 +4,7 @@
 
 # Вспомогательные структуры данных
 
-## SPayInitSdkConfig
+## SPaySdkInitConfig
 
 #### Конфиг для инициализации SDK
 

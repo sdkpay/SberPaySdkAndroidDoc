@@ -16,4 +16,4 @@
 
 ## Реализация в коде
 
-В объект класса [SPayInitSdkConfig](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#spayinitsdkconfig) передайте в параметр `stage` одно из возможных значений enum класса **[SPayStage](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#spaystage)**
+В объект класса [SPaySdkInitConfig](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#spaysdkinitconfig) передайте в параметр `stage` одно из возможных значений enum класса **[SPayStage](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#spaystage)**

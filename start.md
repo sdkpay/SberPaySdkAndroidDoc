@@ -110,7 +110,7 @@ implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 В приведенном выше примере указан путь до aar-файлов, находящихся в директории *libs* проекта. Если вы разместили их в другом месте, то нужно будет указать ваш путь к файлам. Подробнее смотрите в [документации для Android](https://developer.android.com/studio/projects/android-library#psd-add-aar-jar-dependency)
 
 ## Инициализация SDK
-Для инициализации SDK необходимо вызвать метод `initialize` и передать в него [SPayInitSdkConfig](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#spayinitsdkconfig)
+Для инициализации SDK необходимо вызвать метод `initialize` и передать в него [SPaySdkInitConfig](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#spaysdkinitconfig)
 
 ```
 import spay.sdk.SPaySdkApp
@@ -120,7 +120,7 @@ class YourApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-    val config = SPayInitSdkConfig(
+    val config = SPaySdkInitConfig(
         application = requireActivity().application,
         enableBnpl = true,
         stage = stage,
