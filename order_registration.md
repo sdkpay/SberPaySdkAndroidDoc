@@ -2,11 +2,14 @@
 
 #### [Бординг](https://sdkpay.github.io/SberPaySdkAndroidDoc/boarding) | [Регистрация заказов в платежном шлюзе Сбера](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration) | [Начало работы](https://sdkpay.github.io/SberPaySdkAndroidDoc/start) | [Сценарии оплаты через SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script) | [Работа в режиме посочницы](https://sdkpay.github.io/SberPaySdkAndroidDoc/sandbox_mode) | [Вспомогательные структуры данных](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures) | [Актуальная версия SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/version) | [Поддержка](https://sdkpay.github.io/SberPaySdkAndroidDoc/support) | [FAQ](https://sdkpay.github.io/SberPaySdkAndroidDoc/faq)
 
+<br>
+
 # Регистрация заказов в платежном шлюзе Сбера
 
-#### [Для платежного шлюза с эндпоинтом 3dsec.sberbank.ru]()
-#### [Для платежного шлюза с эндпоинтом ecommerce.sberbank.ru]()
-#### [Для подключения на платежном шлюзе ЮМани]()
+#### [Для платежного шлюза с эндпоинтом 3dsec.sberbank.ru и ecommerce.sberbank.ru](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration#%D0%B4%D0%BB%D1%8F-%D0%BF%D0%BB%D0%B0%D1%82%D0%B5%D0%B6%D0%BD%D0%BE%D0%B3%D0%BE-%D1%88%D0%BB%D1%8E%D0%B7%D0%B0-%D1%81-%D1%8D%D0%BD%D0%B4%D0%BF%D0%BE%D0%B8%D0%BD%D1%82%D0%BE%D0%BC-3dsecsberbankru-%D0%B8-ecommercesberbankru)
+#### [Для подключения на платежном шлюзе ЮМани](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration#%D0%B4%D0%BB%D1%8F-%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D1%8F-%D0%BD%D0%B0-%D0%BF%D0%BB%D0%B0%D1%82%D0%B5%D0%B6%D0%BD%D0%BE%D0%BC-%D1%88%D0%BB%D1%8E%D0%B7%D0%B5-%D1%8E%D0%BC%D0%B0%D0%BD%D0%B8-1)
+
+<br>
 
 ## Для платежного шлюза с эндпоинтом 3dsec.sberbank.ru и ecommerce.sberbank.ru
 
@@ -102,16 +105,16 @@ curl --location --request POST 'ecommerce.sberbank.ru/ecomm/gw/partner/api/v1/re
 
 В сценариях автоматической и ручной оплаты с SDK необходимо передавать значение атрибута `sbolBankInvoiceId` – это уникальный идентификатор заказа, сгенерированный Банком. Его значение можно получить в ответе на запрос создания заказа (`register.do` или `registerPreAuth.do`) в Платежном Шлюзе Сбербанка и только при условии, что вы корректно указали дополнительные параметры в теле своего запроса
 
-Для регистрации заказа в песочнице для эндпоинта *3dsec.sberbank.ru* использовать: https://3dsec.sberbank.ru/payment/rest/register.do
+Для регистрации заказа в песочнице для эндпоинта *3dsec.sberbank.ru* использовать: [https://3dsec.sberbank.ru/payment/rest/register.do](https://3dsec.sberbank.ru/payment/rest/register.do)
 
-> Общая документация по работе со шлюзом находится по адресу: https://securepayments.sberbank.ru/wiki/doku.php/main_page
-
-<br>
+> Общая документация по работе со шлюзом находится по адресу: [https://securepayments.sberbank.ru/wiki/doku.php/main_page](https://securepayments.sberbank.ru/wiki/doku.php/main_page)
 
 Для регистрации заказа в песочнице для эндпоинта *ecommerce.sberbank.ru* использовать:
-https://ecomift.sberbank.ru/ecomm/gw/partner/api/v1/register.do
+[https://ecomift.sberbank.ru/ecomm/gw/partner/api/v1/register.do](https://ecomift.sberbank.ru/ecomm/gw/partner/api/v1/register.do)
 
-> Общая документация по работе со шлюзом находится по адресу: https://ecomtest.sberbank.ru/doc#tag/basicServices/operation/register
+> Общая документация по работе со шлюзом находится по адресу: [https://ecomtest.sberbank.ru/doc#tag/basicServices/operation/register](https://ecomtest.sberbank.ru/doc#tag/basicServices/operation/register)
+
+<br>
 
 ## Для подключения на платежном шлюзе ЮМани
 
