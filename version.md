@@ -2,6 +2,8 @@
 
 #### [Бординг](https://sdkpay.github.io/SberPaySdkAndroidDoc/boarding) | [Регистрация заказов в платежном шлюзе Сбера](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration) | [Начало работы](https://sdkpay.github.io/SberPaySdkAndroidDoc/start) | [Сценарии оплаты через SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script) | [Работа в режиме посочницы](https://sdkpay.github.io/SberPaySdkAndroidDoc/sandbox_mode) | [Вспомогательные структуры данных](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures) | [Актуальная версия SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/version) | [Поддержка](https://sdkpay.github.io/SberPaySdkAndroidDoc/support) | [FAQ](https://sdkpay.github.io/SberPaySdkAndroidDoc/faq)
 
+<br>
+
 # Актуальная версия
 
 ## Версия 2.6
@@ -16,6 +18,8 @@
 - Обновление сертификатов безопасности
 - Внутренние доработки
 
+<br>
+
 ## Версия 2.5
 
 ### 2.5.1
@@ -29,6 +33,8 @@
 - Реализована "Оплата частями" на 6 частей отдельным методом
 - Багфикс и внутренние доработки
 
+<br>
+
 ## Версия 2.4
 
 ### 2.4.0
@@ -38,12 +44,16 @@
 - Добавлен метод `logout`, позволяющий удалять локально сохраненный рефреш-токен, если таковой присутствует
 - Исправлен ряд багов
 
+<br>
+
 ## Версия 2.3
 
 ### 2.3.0
 
 - Устранена проблема несовместимости с библиотекой Sber ID
 - Исправлен ряд UI багов
+
+<br>
 
 ## Версия 2.2
 
@@ -81,6 +91,8 @@
 - Переработан UI на экране OTP
 - Улучшена производительность
 
+<br>
+
 ## Версия 2.1
 
 ### 2.1.1
@@ -99,6 +111,8 @@
 - Добавлена защита оплаты, с помощью дополнительного момниторинга и обнаружения подозрительных операций
 - Исправлены внутренние баги
 - Исправлена работа с песочницей без авторизации в приложение банка
+
+<br>
 
 ## Версия 2.0
 
@@ -143,6 +157,8 @@
 - Переработаны методы инициализации и взаимодействия с SDK. Также взаимодействие было перенесено из `SPayButton` в `SPaySdkApp`
 - Исправлены UI баги
 - Исправлен краш при инициализации SDK на версии API34 при вызове `registerReceiver`
+
+<br>
 
 ## Версия 1.2
 

@@ -2,9 +2,13 @@
 
 #### [Бординг](https://sdkpay.github.io/SberPaySdkAndroidDoc/boarding) | [Регистрация заказов в платежном шлюзе Сбера](https://sdkpay.github.io/SberPaySdkAndroidDoc/order_registration) | [Начало работы](https://sdkpay.github.io/SberPaySdkAndroidDoc/start) | [Сценарии оплаты через SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script) | [Работа в режиме посочницы](https://sdkpay.github.io/SberPaySdkAndroidDoc/sandbox_mode) | [Вспомогательные структуры данных](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures) | [Актуальная версия SDK](https://sdkpay.github.io/SberPaySdkAndroidDoc/version) | [Поддержка](https://sdkpay.github.io/SberPaySdkAndroidDoc/support) | [FAQ](https://sdkpay.github.io/SberPaySdkAndroidDoc/faq)
 
+<br>
+
 # Начало работы
 > Версии SDK, которые работают с *API>=24* - поддерживается всеми версиями  
 > Версии SDK, которые работают с *API<24* - до *2.0.x* включительно
+
+<br>
 
 ## Подключение SDK
 Подключите SDK одним из удобных Вам способов: [Maven](https://sdkpay.github.io/SberPaySdkAndroidDoc/start#maven) / [Aar](https://sdkpay.github.io/SberPaySdkAndroidDoc/start#aar)  
@@ -109,6 +113,8 @@ implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
 В приведенном выше примере указан путь до aar-файлов, находящихся в директории *libs* проекта. Если вы разместили их в другом месте, то нужно будет указать ваш путь к файлам. Подробнее смотрите в [документации для Android](https://developer.android.com/studio/projects/android-library#psd-add-aar-jar-dependency)
 
+<br>
+
 ## Инициализация SDK
 Для инициализации SDK необходимо вызвать метод `initialize` и передать в него [SPaySdkInitConfig](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#spaysdkinitconfig)
 
@@ -150,6 +156,8 @@ Helpers или помогашки - функционал, позволяющий
 
 > При вызове данного метода подгружается конфиг, который содержит строковые ресурсы и картинки. Если метод был вызван не при старте приложения, то есть шанс, что SDK не успеет получить конфиг, в результате чего кнопка SDK может быть отрисована некорректно или не отрисована вовсе
 
+<br>
+
 ## Добавление кнопки
 
 Для вызова метода оплаты можно использовать готовый класс кнопки `SPayButton` или отрисовать кнопку самостоятельно в соответсвии с [гайдлайнами](https://cdn-app.sberdevices.ru/misc/0.0.0/assets/bsm-docs/button-guideline.pdf)
@@ -182,11 +190,15 @@ private fun SPButton() {
 }
 ```
 
+<br>
+
 ## Проверка готовности к оплате
 
 Для проверки готовности сервисов SberPay к оплате, и проверки наличия установленного мобильного приложения банка на устройстве необходимо вызывать метод `isReadyForSPaySdk`
 
 > Кнопка должна быть отрисована только в том случае, если метод `isReadyForSPaySdk` вернет true
+
+<br>
 
 ## Запрос разрешений
 
