@@ -6,351 +6,75 @@
 
 # Сценарии оплаты
 
-#### [Автоматическая оплата](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#автоматическая-оплата-1)
-#### [Оплата без рефреш-токена](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#оплата-без-рефреш-токена-1)
-#### [Оплата частями с комиссией](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#оплата-частями-с-комиссией-1)
-#### [Оплата со списанием бонусов «Спасибо»](https://sdkpay.github.io/SberPaySdkAndroidDoc/payment_script#оплата-со-списанием-бонусов-спасибо-1)
+> Возможные сценарии оплаты описаны в структуре [SPayMethod](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#spaymethod)
+
+Вне зависимости от конкретного сценария оплаты, Вам необходимо будет использовать один и тот же метод запуска SDK
 
 <br>
 
-## Автоматическая оплата
+## Способы авторизации
 
-### Сценарий автоматической оплаты
+В SDK на данный момент существует 4 способа авторизации для проведения оплаты:
+- По рефреш токену
+- Бесшовная (используя авторизационный токен)
+- Через мобильное приложение Банка
+- По номеру телефона
 
-Если оплата происходит через эквайринг Сбербанка и уже известен **sbolBankInvoiceId**, тогда следует воспользоваться автоматической оплатой. Для этого необходимо воспользоваться методом `payWithBankInvoiceId`. Ниже представлен список параметров метода
+Очередность попыток авторизации будет такой же, как описано выше.
+Т.е. сначала SDK будет пробовать авторизоваться по рефреш токену, затем бесшовным способом и так далее, пока не пройдет успешно, либо все способы не закончатся. Естественно, условие выше актуально в случае, когда все способы доступны для конкретного пользователя и способа оплаты
 
-|Объект|Тип|Формат|Обязательный|Описание|
-|---|:---:|:---:|:---:|---|
-|context|Context|-|Да|Любой контекст Вашего приложения который может запускать новую Activity|
-|apiKey|String|ANS..512|Да|Ключ Клиента для работы с сервисами платежного шлюза через SDK|
-|merchantLogin|String|ANS..512|Да|Логин партнера для работы с сервисами платежного шлюза|
-|bankInvoiceId|String|ANS..512|Да|Уникальный номер (идентификатор) заказа в Платежном шлюзе Банка.Необходимо передавать значение sbolBankInvoiceId (передается в externalParams) из ответа на Запрос регистрации заказа|
-|orderNumber|String|ANS..36|Да|Уникальный номер (идентификатор) заказа в системе Клиента. Используется для упрощенного поиска заказа в системе банка при выявлении дефектов|
-|appPackage|String|ANS..512|Да|Package приложения (он же BuildConfig.APPLICATION_ID) Вашего приложения, по которому необходимо вернуть Плательщика после аутентификации в СберБанк Онлайн|
-|language|String|A..2|Нет|Язык локализации интерфейсов.  Пример: RU|
-|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#paymentresult)|
+> Для Пользователя и Партнера визуальное отличие будет только между авторизацией через мобильное приложение Банка (произойдет переход в МП Банка с авторизацией и редирект обратно в приложение Партнера) и другими способами (все происходит в рамках открытой шторки SDK)
+>
+> В большинстве случаев первая авторизация для Пользователя будет через мобильное приложение Банка
 
-### Вызов метода `payWithBankInvoiceId`
+<br>
 
-Метод `payWithBankInvoiceId` является входной точкой в SDK и должен быть вызван только по клику на кнопку «Оплатить»
+## Запуск сценария оплаты
 
-> Обязательно корректно укажите значение параметра `appPackage`. В противном случае при возврате из СБОЛа после оплаты, если будет допущена ошибка в схеме, поднимется шторка с вариантами приложений для продолжения оплаты. Таким образом, сценарий разорвется
+Метод `pay` является входной точкой в SDK и должен быть вызван только по клику на кнопку «Оплатить»
+
+ > Обязательно корректно укажите значение параметра `appPackage`.<br>В противном случае при возврате из МП Банка после авторизации поднимется шторка с вариантами приложений для продолжения оплаты. Таким образом сценарий разорвется
 
 ### Kotlin
 
 ```
-SPaySdkApp.getInstance().payWithBankInvoiceId(
-    context = context,
-    apiKey = API_KEY,
-    merchantLogin = CLIENT_NAME,
-    bankInvoiceId = BANK_INVOICE_ID,
-    orderNumber = ORDER_NUMBER,
-    appPackage = APP_PACKAGE,
-    language = LANGUAGE,
-) { paymentResult ->
-    when (paymentResult) {
-        is PaymentResult.Success -> {
-            //do something on success
-	        doOnSuccess()	
-        }
-        is PaymentResult.Error -> {
-            //do something on error
-	        doOnError(paymentResult.merchantError)
-        }
-        is PaymentResult.Processing -> {
-            //do something on processing
-             doOnProcessing();
-        }
-    }
-}
+SPaySdkApp.getInstance().pay(
+    method = SPayMethod.Default,
+    request = SPaymentRequest(
+        context = requireContext(),
+        apiKey = API_KEY,
+        merchantLogin = MERCHANT_LOGIN,
+        bankInvoiceId = BANK_INVOICE_ID,
+        orderNumber = ORDER_NUMBER,
+        appPackage = APP_PACKAGE,
+        phoneNumber = PHONE_NUMBER
+    ) { paymentResult -> }
+)
 ```
 
 ### Java
 
 ```
-SPaySdkApp.getInstance().payWithBankInvoiceId(
-    context,
-    API_KEY,
-    CLIENT_NAME,
-    BANK_INVOICE_ID,
-    ORDER_NUMBER,
-    APP_PACKAGE,
-    LANGUAGE,
-    paymentResult -> {
-        if (paymentResult instanceof PaymentResult.Success) {
-		    //do something on success
-            doOnSuccess();
-        } else if (paymentResult instanceof PaymentResult.Error) {
-		    //do something on error
-            doOnError(
-               ((PaymentResult.Error) paymentResult).getMerchantErrors()
-            );
-        } else if (paymentResult instanceof PaymentResult.Processing) {
+SPaySdkApp.getInstance().pay(
+    SPayMethod.Default,
+    SPaymentRequest(
+        context,
+        API_KEY,
+        MERCHANT_LOGIN,
+        BANK_INVOICE_ID,
+        ORDER_NUMBER,
+        APP_PACKAGE,
+        PHONE_NUMBER,
+        paymentResult -> {
+            if (paymentResult instanceof PaymentResult.Success) {
+		        //do something on success
+            } else if (paymentResult instanceof PaymentResult.Error) {
+		        //do something on error
+            } else if (paymentResult instanceof PaymentResult.Processing) {
             //do something on processing
-            doOnProcessing();
+            }
+            return null;
         }
-        return null;
-    }
-);
-```
-
-<br>
-
-## Оплата без рефреш-токена
-
-### Сценарий оплаты без рефреш-токена
-
-Для автоматической оплаты необходимо воспользоваться методом `payWithoutRefresh`. Ниже представлен список параметров метода. Ниже представлен список параметров метода
-
-|Объект|Тип|Формат|Обязательный|Описание|
-|---|:---:|:---:|:---:|---|
-|context|Context|-|Да|Любой контекст Вашего приложения который может запускать новую Activity|
-|apiKey|String|ANS..512|Да|Ключ Клиента для работы с сервисами платежного шлюза через SDK|
-|merchantLogin|String|ANS..512|Да|Логин партнера для работы с сервисами платежного шлюза|
-|bankInvoiceId|String|ANS..512|Да|Уникальный номер (идентификатор) заказа в Платежном шлюзе Банка.Необходимо передавать значение sbolBankInvoiceId (передается в externalParams) из ответа на Запрос регистрации заказа|
-|orderNumber|String|ANS..36|Да|Уникальный номер (идентификатор) заказа в системе Клиента. Используется для упрощенного поиска заказа в системе банка при выявлении дефектов|
-|appPackage|String|ANS..512|Да|Package приложения (он же BuildConfig.APPLICATION_ID) Вашего приложения, по которому необходимо вернуть Плательщика после аутентификации в СберБанк Онлайн|
-|language|String|A..2|Нет|Язык локализации интерфейсов.  Пример: RU|
-|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#paymentresult)|
-
-### Вызов метода `payWithoutRefresh`
-
-Метод `payWithoutRefresh` является входной точкой в SDK и должен быть вызван только по клику на кнопку «Оплатить»
-
-> Обязательно корректно укажите значение параметра `appPackage`. В противном случае при возврате из СБОЛа после оплаты, если будет допущена ошибка в схеме, поднимется шторка с вариантами приложений для продолжения оплаты. Таким образом, сценарий разорвется
-
-### Kotlin
-
-```
-SPaySdkApp.getInstance().payWithoutRefresh(
-    context = context,
-    apiKey = API_KEY,
-    merchantLogin = CLIENT_NAME,
-    bankInvoiceId = BANK_INVOICE_ID,
-    orderNumber = ORDER_NUMBER,
-    appPackage = APP_PACKAGE,
-    language = LANGUAGE,
-) { paymentResult ->
-    when (paymentResult) {
-        is PaymentResult.Success -> {
-            //do something on success
-	        doOnSuccess()	
-        }
-        is PaymentResult.Error -> {
-            //do something on error
-	        doOnError(paymentResult.merchantError)
-        }
-        is PaymentResult.Processing -> {
-            //do something on processing
-             doOnProcessing();
-        }
-         is PaymentResult.Cancel -> {
-         //do something on processing
-             doOnCancel();
-        }
-    }
-}
-```
-
-### Java
-
-```
-SPaySdkApp.getInstance().payWithoutRefresh(
-    context,
-    API_KEY,
-    CLIENT_NAME,
-    BANK_INVOICE_ID,
-    ORDER_NUMBER,
-    APP_PACKAGE,
-    LANGUAGE,
-    paymentResult -> {
-        if (paymentResult instanceof PaymentResult.Success) {
-		    //do something on success
-            doOnSuccess();
-        } else if (paymentResult instanceof PaymentResult.Error) {
-		    //do something on error
-            doOnError(
-               ((PaymentResult.Error) paymentResult).getMerchantErrors()
-            );
-        } else if (paymentResult instanceof PaymentResult.Processing) {
-            //do something on processing
-            doOnProcessing();
-        }
-        return null;
-    }
-);
-```
-
-<br>
-
-## Оплата частями с комиссией
-
-### Сценарий оплаты частями с комиссией
-
-Для выбора сценария оплаты только частями с комиссией необходимо использовать метод SDK `payWithPartPay`. Ниже представлен список параметров метода
-
-|Объект|Тип|Формат|Обязательный|Описание|
-|---|:---:|:---:|:---:|---|
-|context|Context|-|Да|Любой контекст Вашего приложения который может запускать новую Activity|
-|apiKey|String|ANS..512|Да|Ключ Клиента для работы с сервисами платежного шлюза через SDK|
-|merchantLogin|String|ANS..512|Да|Логин партнера для работы с сервисами платежного шлюза|
-|bankInvoiceId|String|ANS..512|Да|Уникальный номер (идентификатор) заказа в Платежном шлюзе Банка.Необходимо передавать значение sbolBankInvoiceId (передается в externalParams) из ответа на Запрос регистрации заказа|
-|orderNumber|String|ANS..36|Да|Уникальный номер (идентификатор) заказа в системе Клиента. Используется для упрощенного поиска заказа в системе банка при выявлении дефектов|
-|appPackage|String|ANS..512|Да|Package приложения (он же BuildConfig.APPLICATION_ID) Вашего приложения, по которому необходимо вернуть Плательщика после аутентификации в СберБанк Онлайн|
-|language|String|A..2|Нет|Язык локализации интерфейсов.  Пример: RU|
-|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#paymentresult)|
-
-### Вызов метода `payWithPartPay`
-
-Метод `payWithPartPay` является входной точкой в SDK и должен быть вызван только по клику на кнопку «Оплатить»
-
-> Обязательно корректно укажите значение параметра `appPackage`. В противном случае при возврате из СБОЛа после оплаты, если будет допущена ошибка в схеме, поднимется шторка с вариантами приложений для продолжения оплаты. Таким образом, сценарий разорвется
-
-### Kotlin
-
-```
-SPaySdkApp.getInstance().payWithoutRefresh(
-    context = context,
-    apiKey = API_KEY,
-    merchantLogin = CLIENT_NAME,
-    bankInvoiceId = BANK_INVOICE_ID,
-    orderNumber = ORDER_NUMBER,
-    appPackage = APP_PACKAGE,
-    language = LANGUAGE,
-) { paymentResult ->
-    when (paymentResult) {
-        is PaymentResult.Success -> {
-            //do something on success
-	        doOnSuccess()	
-        }
-        is PaymentResult.Error -> {
-            //do something on error
-	        doOnError(paymentResult.merchantError)
-        }
-        is PaymentResult.Processing -> {
-            //do something on processing
-             doOnProcessing();
-        }
-         is PaymentResult.Cancel -> {
-         //do something on processing
-             doOnCancel();
-        }
-    }
-}
-```
-
-### Java
-
-```
-SPaySdkApp.getInstance().payWithoutRefresh(
-    context,
-    API_KEY,
-    CLIENT_NAME,
-    BANK_INVOICE_ID,
-    ORDER_NUMBER,
-    APP_PACKAGE,
-    LANGUAGE,
-    paymentResult -> {
-        if (paymentResult instanceof PaymentResult.Success) {
-		    //do something on success
-            doOnSuccess();
-        } else if (paymentResult instanceof PaymentResult.Error) {
-		    //do something on error
-            doOnError(
-               ((PaymentResult.Error) paymentResult).getMerchantErrors()
-            );
-        } else if (paymentResult instanceof PaymentResult.Processing) {
-            //do something on processing
-            doOnProcessing();
-        }
-        return null;
-    }
-);
-```
-
-<br>
-
-## Оплата со списанием бонусов «Спасибо»
-
-### Сценарий оплаты со списанием бонусов «Спасибо»
-
-Для выбора сценария оплаты с бонусами «Спасибо» необходимо использовать метод SDK `payWithBonuses`. Ниже представлен список параметров метода
-
-|Объект|Тип|Формат|Обязательный|Описание|
-|---|:---:|:---:|:---:|---|
-|context|Context|-|Да|Любой контекст Вашего приложения который может запускать новую Activity|
-|apiKey|String|ANS..512|Да|Ключ Клиента для работы с сервисами платежного шлюза через SDK|
-|merchantLogin|String|ANS..512|Да|Логин партнера для работы с сервисами платежного шлюза|
-|bankInvoiceId|String|ANS..512|Да|Уникальный номер (идентификатор) заказа в Платежном шлюзе Банка.Необходимо передавать значение sbolBankInvoiceId (передается в externalParams) из ответа на Запрос регистрации заказа|
-|orderNumber|String|ANS..36|Да|Уникальный номер (идентификатор) заказа в системе Клиента. Используется для упрощенного поиска заказа в системе банка при выявлении дефектов|
-|appPackage|String|ANS..512|Да|Package приложения (он же BuildConfig.APPLICATION_ID) Вашего приложения, по которому необходимо вернуть Плательщика после аутентификации в СберБанк Онлайн|
-|language|String|A..2|Нет|Язык локализации интерфейсов.  Пример: RU|
-|callback|(PaymentResult) -> Unit|-|Да|Результат выполнения метода оплаты.<br>Структура [PaymentResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#paymentresult)|
-
-### Вызов метода `payWithBonuses`
-
-Метод `payWithBonuses` является входной точкой в SDK и должен быть вызван только по клику на кнопку «Оплатить»
-
-> Обязательно корректно укажите значение параметра `appPackage`. В противном случае при возврате из СБОЛа после оплаты, если будет допущена ошибка в схеме, поднимется шторка с вариантами приложений для продолжения оплаты. Таким образом, сценарий разорвется
-
-### Kotlin
-
-```
-SPaySdkApp.getInstance().payWithoutRefresh(
-    context = context,
-    apiKey = API_KEY,
-    merchantLogin = CLIENT_NAME,
-    bankInvoiceId = BANK_INVOICE_ID,
-    orderNumber = ORDER_NUMBER,
-    appPackage = APP_PACKAGE,
-    language = LANGUAGE,
-) { paymentResult ->
-    when (paymentResult) {
-        is PaymentResult.Success -> {
-            //do something on success
-	        doOnSuccess()	
-        }
-        is PaymentResult.Error -> {
-            //do something on error
-	        doOnError(paymentResult.merchantError)
-        }
-        is PaymentResult.Processing -> {
-            //do something on processing
-             doOnProcessing();
-        }
-         is PaymentResult.Cancel -> {
-         //do something on processing
-             doOnCancel();
-        }
-    }
-}
-```
-
-### Java
-
-```
-SPaySdkApp.getInstance().payWithoutRefresh(
-    context,
-    API_KEY,
-    CLIENT_NAME,
-    BANK_INVOICE_ID,
-    ORDER_NUMBER,
-    APP_PACKAGE,
-    LANGUAGE,
-    paymentResult -> {
-        if (paymentResult instanceof PaymentResult.Success) {
-		    //do something on success
-            doOnSuccess();
-        } else if (paymentResult instanceof PaymentResult.Error) {
-		    //do something on error
-            doOnError(
-               ((PaymentResult.Error) paymentResult).getMerchantErrors()
-            );
-        } else if (paymentResult instanceof PaymentResult.Processing) {
-            //do something on processing
-            doOnProcessing();
-        }
-        return null;
-    }
+    )
 );
 ```

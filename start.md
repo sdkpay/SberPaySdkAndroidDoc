@@ -127,19 +127,20 @@ class YourApplication : Application() {
         super.onCreate()
 
     val config = SPaySdkInitConfig(
-        application = requireActivity().application,
-        enableBnpl = true,
-        stage = stage,
-        resultViewNeeded = true,
-        enableLogging = true,
-        helperConfig = SPayHelperConfig(
-            isHelperEnabled = true,
-            disabledHelpers = listOfHelpers
-        ),
-        initializationResult = { initializationResult -> ... }
+            enableBnpl = true,
+            stage = SPayStage.Prod,
+            helperConfig = SPayHelperConfig(
+                isHelperEnabled = true,
+                disabledHelpers = emptyList()
+            ),
+            resultViewNeeded = true,
+            enableLogging = false,
+            spasiboBonuses = true,
+            enableOutsideTouchCancelling = true,
+            initializationResult = { initializationResult -> ... }
     )
 
-    SPaySdkApp.getInstance().initialize(config)
+    SPaySdkApp.getInstance().initialize(this, config)
 
     }
  }
@@ -194,9 +195,12 @@ private fun SPButton() {
 
 ## Проверка готовности к оплате
 
-Для проверки готовности сервисов SberPay к оплате, и проверки наличия установленного мобильного приложения банка на устройстве необходимо вызывать метод `isReadyForSPaySdk`
+Для проверки готовности сервисов SberPay к оплате необходимо вызывать метод `isReadyForSPaySdk`
 
-> Кнопка должна быть отрисована только в том случае, если метод `isReadyForSPaySdk` вернет true
+> Метод `isReadyForSPaySdk` является обязательным для вызова
+
+> Кнопка должна быть отрисована только в том случае, если метод `isReadyForSPaySdk` вернет `SdkReadyCheckResult.Ready`.  
+Структура [SdkReadyCheckResult](https://sdkpay.github.io/SberPaySdkAndroidDoc/data_structures#sdkreadycheckresult)
 
 <br>
 
