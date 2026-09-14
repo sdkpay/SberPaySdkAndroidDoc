@@ -30,6 +30,14 @@ dependencyResolutionManagement {
                 password = "*password для репозитория*"
             }
         }
+        maven {
+            name = "gitverse"
+            url = uri("https://gitverse.ru/api/packages/clickstream/maven")
+        }
+        maven {
+            name = "HMS"
+            url = uri("https://developer.huawei.com/repo/")
+        }  
     }
 }
 ```
@@ -46,6 +54,9 @@ dependencies {
 Пакет дистрибуции состоит из двух файлов: *SDK-VERSION.aar* и *bms-sdk-fingerprint_VERSION_release.aar*, которые необходимо разместить в вашем проекте (например в директории *libs* в корне проекта). Далее нужно перейти в **build.gradle** вашего модуля и добавить зависимости от *.aar-файлов* внутрь блока `dependencies { ... }`
 
 > Также здесь необходимо явно добавить транзитивные зависимости библиотек
+> 
+> Важно!  
+> Библиотека постоянно обновляется и документация может за ней не успевать. Если каких-то транзитивных зависимостей не хватает их можно достать из .pom-файла, переданного вместе с aar
 
 ```
 // SPaySdk
@@ -109,6 +120,12 @@ implementation("com.airbnb.android:lottie:6.2.0")
 
 // Serialization Json
 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+
+// Clickstream
+implementation("platform.mobile.clickstream:clickstreamlib:2.6.2")
+implementation("platform.mobile.clickstream:models:2.6.2")
+implementation("platform.mobile.clickstream:network:2.6.2")
+implementation("platform.mobile.clickstream:utils:2.6.2")
 ```
 
 В приведенном выше примере указан путь до aar-файлов, находящихся в директории *libs* проекта. Если вы разместили их в другом месте, то нужно будет указать ваш путь к файлам. Подробнее смотрите в [документации для Android](https://developer.android.com/studio/projects/android-library#psd-add-aar-jar-dependency)
