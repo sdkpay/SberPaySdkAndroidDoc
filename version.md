@@ -11,6 +11,24 @@
 ### 3.2.3
 
 - Исправление багов и внутренние доработки
+- Добавлены новые репозитории и транзитивные зависимости
+    ```
+    maven {
+        name = "gitverse"
+        url = uri("https://gitverse.ru/api/packages/clickstream/maven")
+    }
+    maven {
+        name = "HMS"
+        url = uri("https://developer.huawei.com/repo/")
+    }    
+    ```
+    Транзитивные зависимости необходимы только при интеграции *aar*
+    ```
+    platform.mobile.clickstream:clickstreamlib:2.6.2
+    platform.mobile.clickstream:models:2.6.2
+    platform.mobile.clickstream:network:2.6.2
+    platform.mobile.clickstream:utils:2.6.2
+    ```
 
 ### 3.2.2
 
